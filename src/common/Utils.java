@@ -19,6 +19,8 @@ public class Utils {
     public static final int BORDER_WIDTH = 20;
     public static final int BLOCK_WIDTH = 50;
     public static final int BLOCK_HEIGHT = 20;
+    public static final int FRAMESPERSECOND = 60;
+
 
     /**
      * @return new random color

@@ -5,6 +5,7 @@ import animation.CountdownAnimation;
 import animation.PauseScreen;
 import biuoop.DrawSurface;
 import biuoop.GUI;
+import biuoop.KeyboardSensor;
 import common.Counter;
 import common.SpriteCollection;
 import common.Utils;
@@ -39,11 +40,11 @@ public class GameLevel implements Animation {
     public static final int BLOCK_HEIGHT = 30;
     public static final int BALLS = 1;
     public static final int RADIUS = 10;
-    private static final int framesPerSecond = 60;
 
     private SpriteCollection sprites;
     private GameEnvironment environment;
     private GUI gui;
+    private KeyboardSensor keyboardSensor;
     private Paddle paddle;
     private Counter blockCounter;
     private Counter ballCounter;
@@ -58,19 +59,22 @@ public class GameLevel implements Animation {
     private String levelName;
     private boolean running;
 
-    public GameLevel(LevelInformation level, Counter score) {
-        this.gui = new GUI("Arkanoid", WIDTH, HEIGHT);
+    public GameLevel(LevelInformation level, KeyboardSensor keyboardSensor, AnimationRunner animationRunner, GUI gui, Counter score) {
+        this.gui = gui;
+        this.keyboardSensor=keyboardSensor;
         this.score = score;
         this.environment = new GameEnvironment();
+        this.runner = animationRunner;
         this.sprites = new SpriteCollection();
         this.paddle = new Paddle(level.getPaddleRectangle(), level.getPaddleColor(), level.getPaddleSpeed());
-        this.sprites.addSprite(level.getBackground());
+        //this.sprites.addSprite(level.getBackground());
         this.ballCounter = new Counter(level.numberOfBalls());
         this.blockCounter = new Counter(level.blocks().size());
         this.ballList = level.getBallsList();
         this.blocksList = level.blocks();
         this.levelName = level.levelName();
-        initialize();
+        //initialize();
+        System.out.println("GameLevel");
     }
 
     /**
@@ -78,21 +82,21 @@ public class GameLevel implements Animation {
      * and add them to the game.
      */
     public void initialize() {
-       /* this.environment = new GameEnvironment();*/
+        /* this.environment = new GameEnvironment();*/
         this.sprites = new SpriteCollection();
         this.paddle.setGui(this.gui);
-        this.paddle.setKeyboard(this.gui.getKeyboardSensor());
+        this.paddle.setKeyboard(this.keyboardSensor);
         this.score = new Counter(0);
         this.blockRemover = new BlockRemover(this, this.blockCounter);
         this.ballRemover = new BallRemover(this, this.ballCounter);
         this.scoreTrackingListener = new ScoreTrackingListener(this.score);
         this.paddle.addToGame(this);
-        this.runner = new AnimationRunner(this.gui, framesPerSecond);
+        //this.runner = new AnimationRunner(this.gui, framesPerSecond);
         //this.duplicateBall = new DuplicateBall(this, this.ballCounter);
         generateBlocks();
-        generateBalls();
         generateScoreBoard();
         generateBorder();
+        System.out.println("initialize");
     }
 
     /**
@@ -205,7 +209,7 @@ public class GameLevel implements Animation {
         if (this.blockCounter.getValue() == 0) {
             this.score.increase(100);
         }
-        this.gui.close();
+        //this.gui.close();
         return;
     }
 
@@ -324,7 +328,7 @@ public class GameLevel implements Animation {
     @Override
     public void doOneFrame(DrawSurface d) {
         this.sprites.drawAllOn(d);
-        //   this.gui.show(d);
+        //this.gui.show(d);
         this.sprites.notifyAllTimePassed();
         if (this.gui.getKeyboardSensor().isPressed("p")) {
             this.runner.run(new PauseScreen(this.gui.getKeyboardSensor()));
@@ -338,7 +342,24 @@ public class GameLevel implements Animation {
     @Override
     public boolean shouldStop() {
         return !(this.blockCounter.getValue() > 0 && this.ballCounter.getValue() > 0);
-
-//        return !this.running;
     }
+
+    /**
+     * getter.
+     *
+     * @return Counter
+     */
+    public Counter getBallCounter() {
+        return this.ballCounter;
+    }
+
+    /**
+     * setter.
+     *
+     * @param ballCounter Counter
+     */
+    public void setBallCounter(Counter ballCounter) {
+        this.ballCounter = ballCounter;
+    }
+
 }
