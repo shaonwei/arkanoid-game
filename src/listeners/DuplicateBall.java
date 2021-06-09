@@ -4,24 +4,24 @@ import common.Counter;
 import common.Utils;
 import elements.Ball;
 import elements.Block;
-import game.Game;
+import game.GameLevel;
 import interfaces.HitListener;
 
 /**
  * @author Sharon Weiss
  */
 public class DuplicateBall implements HitListener {
-    private Game game;
+    private GameLevel gameLevel;
     private Counter remainingBalls;
 
     /**
      * constructor.
      *
-     * @param game           game.Game
+     * @param gameLevel      game.Game
      * @param remainingBalls Counter
      */
-    public DuplicateBall(Game game, Counter remainingBalls) {
-        this.game = game;
+    public DuplicateBall(GameLevel gameLevel, Counter remainingBalls) {
+        this.gameLevel = gameLevel;
         this.remainingBalls = remainingBalls;
     }
 
@@ -35,9 +35,9 @@ public class DuplicateBall implements HitListener {
     @Override
     public void hitEvent(Block beingHit, Ball hitter) {
         Ball newBall = hitter.duplicate();
-        newBall.setVelocity(Utils.generateVelocity(newBall.getRadius()));
-        newBall.addToGame(this.game);
+        newBall.setVelocity(Utils.generateVelocity());
+        newBall.addToGame(this.gameLevel);
         this.remainingBalls.increase(1);
-        newBall.setGameEnvironment(this.game.getEnvironment());
+        newBall.setGameEnvironment(this.gameLevel.getEnvironment());
     }
 }

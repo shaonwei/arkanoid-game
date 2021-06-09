@@ -3,24 +3,24 @@ package listeners;
 import common.Counter;
 import elements.Ball;
 import elements.Block;
-import game.Game;
+import game.GameLevel;
 import interfaces.HitListener;
 
 /**
  * @author Sharon Weiss
  */
 public class BallRemover implements HitListener {
-    private Game game;
+    private GameLevel gameLevel;
     private Counter remainingBalls;
 
     /**
      * constructor.
      *
-     * @param game           game.Game
+     * @param gameLevel           game.Game
      * @param remainingBalls Counter
      */
-    public BallRemover(Game game, Counter remainingBalls) {
-        this.game = game;
+    public BallRemover(GameLevel gameLevel, Counter remainingBalls) {
+        this.gameLevel = gameLevel;
         this.remainingBalls = remainingBalls;
     }
 
@@ -33,7 +33,8 @@ public class BallRemover implements HitListener {
      */
     @Override
     public void hitEvent(Block beingHit, Ball hitter) {
-        hitter.removeFromGame(this.game);
+        hitter.removeFromGame(this.gameLevel);
+        System.out.println("hit- ball remover"+hitter.toString());
         this.remainingBalls.decrease(1);
     }
 
@@ -42,8 +43,8 @@ public class BallRemover implements HitListener {
      *
      * @return game.Game
      */
-    public Game getGame() {
-        return this.game;
+    public GameLevel getGame() {
+        return this.gameLevel;
     }
 
     /**
@@ -51,8 +52,8 @@ public class BallRemover implements HitListener {
      *
      * @param g game.Game
      */
-    public void setGame(Game g) {
-        this.game = g;
+    public void setGame(GameLevel g) {
+        this.gameLevel = g;
     }
 
     /**
