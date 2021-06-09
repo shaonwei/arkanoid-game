@@ -2,7 +2,7 @@ package elements;
 
 import biuoop.DrawSurface;
 import common.Velocity;
-import game.Game;
+import game.GameLevel;
 import geometric.Point;
 import geometric.Rectangle;
 import interfaces.Collidable;
@@ -56,7 +56,6 @@ public class Block implements Collidable, Sprite, HitNotifier {
             newVelocity.setDy(-currentVelocity.getDy());
         }
         this.notifyHit(hitter);
-
         return newVelocity;
     }
 
@@ -113,22 +112,22 @@ public class Block implements Collidable, Sprite, HitNotifier {
     }
 
     /**
-     * @param game add block to game
+     * @param gameLevel add block to game
      */
-    public void addToGame(Game game) {
-        game.addSprite(this);
-        game.addCollidable(this);
+    public void addToGame(GameLevel gameLevel) {
+        gameLevel.addSprite(this);
+        gameLevel.addCollidable(this);
     }
 
     /**
      * remove block from game.
      *
-     * @param game game.Game
+     * @param gameLevel game.Game
      */
-    public void removeFromGame(Game game) {
-        game.removeSprite(this);
-        game.removeCollidable(this);
-        removeHitListener(game.getBlockRemover());
+    public void removeFromGame(GameLevel gameLevel) {
+        gameLevel.removeSprite(this);
+        gameLevel.removeCollidable(this);
+        removeHitListener(gameLevel.getBlockRemover());
     }
 
     /**

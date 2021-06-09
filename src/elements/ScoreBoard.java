@@ -13,16 +13,19 @@ import java.awt.Color;
 public class ScoreBoard extends Block {
 
     private Counter score;
+    private String levelName;
 
     /**
      * constructor.
      *
      * @param rectangle Rectangle
      * @param score     Counter
+     * @param levelName String
      */
-    public ScoreBoard(Rectangle rectangle, Counter score) {
+    public ScoreBoard(Rectangle rectangle, Counter score, String levelName) {
         super(rectangle);
         this.score = score;
+        this.levelName = levelName;
         this.setColor(Utils.generateColor());
     }
 
@@ -52,5 +55,6 @@ public class ScoreBoard extends Block {
         super.drawOn(drawSurface);
         drawSurface.setColor(Color.black);
         drawSurface.drawText(350, 25, "Score: " + this.score.getValue(), 20);
+        drawSurface.drawText(600, 25, this.levelName, 20);
     }
 }

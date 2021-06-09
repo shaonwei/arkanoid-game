@@ -1,10 +1,11 @@
 package elements;
 
 import biuoop.DrawSurface;
+import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import common.Utils;
 import common.Velocity;
-import game.Game;
+import game.GameLevel;
 import geometric.Point;
 import geometric.Rectangle;
 import interfaces.Collidable;
@@ -21,6 +22,7 @@ public class Paddle implements Sprite, Collidable {
     private Rectangle rectangle;
     private Color color;
     private double[] regions;
+    private int speed;
 
     /**
      * @param gui      GUI
@@ -34,6 +36,20 @@ public class Paddle implements Sprite, Collidable {
         this.color = Utils.generateColor();
         this.regions = new double[6];
         setRegions();
+        this.speed = 5;
+    }
+
+    /**
+     * @param rect  Rect- set paddle's rectangle
+     * @param c     Color- set paddle's color
+     * @param speed Color- set paddle's speed
+     */
+    public Paddle(Rectangle rect, Color c, int speed) {
+        this.rectangle = rect;
+        this.color = c;
+        this.regions = new double[6];
+        setRegions();
+        this.speed = speed;
     }
 
     /**
@@ -65,7 +81,7 @@ public class Paddle implements Sprite, Collidable {
      */
     public void moveLeft() {
         if (this.rectangle.getUpperLeft().getX() > 0) {
-            this.rectangle.setUpperLeft(new Point(this.rectangle.getUpperLeft().getX() - 5,
+            this.rectangle.setUpperLeft(new Point(this.rectangle.getUpperLeft().getX() - this.speed,
                     this.rectangle.getUpperLeft().getY()));
             setRegions();
         }
@@ -75,8 +91,8 @@ public class Paddle implements Sprite, Collidable {
      * move paddle to right.
      */
     public void moveRight() {
-        if (this.rectangle.getUpperLeft().getX() + this.rectangle.getWidth() < Game.WIDTH) {
-            this.rectangle.setUpperLeft(new Point(this.rectangle.getUpperLeft().getX() + 5,
+        if (this.rectangle.getUpperLeft().getX() + this.rectangle.getWidth() < GameLevel.WIDTH) {
+            this.rectangle.setUpperLeft(new Point(this.rectangle.getUpperLeft().getX() + this.speed,
                     this.rectangle.getUpperLeft().getY()));
             setRegions();
         }
@@ -109,7 +125,7 @@ public class Paddle implements Sprite, Collidable {
      * @param g game.Game
      *          Add this paddle to the game.
      */
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addCollidable(this);
         g.addSprite(this);
     }
@@ -177,4 +193,75 @@ public class Paddle implements Sprite, Collidable {
         }
         return newVelocity;
     }
+
+    /**
+     * getter.
+     *
+     * @return rectangle of paddle
+     */
+    public Rectangle getRectangle() {
+        return this.rectangle;
+    }
+
+    /**
+     * @param rectangle Rectangle- setter
+     */
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
+    }
+
+    /**
+     * getter.
+     *
+     * @return int- paddle's speed
+     */
+    public int getSpeed() {
+        return this.speed;
+    }
+
+    /**
+     * setter.
+     *
+     * @param speed int
+     */
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    /**
+     * getter.
+     *
+     * @return KeyboardSensor
+     */
+    public KeyboardSensor getKeyboard() {
+        return this.keyboard;
+    }
+
+    /**
+     * setter.
+     *
+     * @param keyboard KeyboardSensor
+     */
+    public void setKeyboard(KeyboardSensor keyboard) {
+        this.keyboard = keyboard;
+    }
+
+    /**
+     * getter.
+     *
+     * @return gui
+     */
+    public GUI getGui() {
+        return this.gui;
+    }
+
+    /**
+     * setter.
+     *
+     * @param gui GUI
+     */
+    public void setGui(GUI gui) {
+        this.gui = gui;
+    }
+
 }

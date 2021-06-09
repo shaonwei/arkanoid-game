@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class GameEnvironment {
     private ArrayList<Collidable> arrayList;
 
-
     /**
      * game.GameEnvironment constructor.
      */

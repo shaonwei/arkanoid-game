@@ -16,19 +16,22 @@ import geometric.Point;
 import geometric.Rectangle;
 import interfaces.Animation;
 import interfaces.Collidable;
+import interfaces.LevelInformation;
 import interfaces.Sprite;
+import jdk.jshell.execution.Util;
 import listeners.BallRemover;
 import listeners.BlockRemover;
 import listeners.DuplicateBall;
 import listeners.ScoreTrackingListener;
 
 import java.awt.Color;
+import java.util.List;
 import java.util.Random;
 
 /**
  * @author Sharon Weiss
  */
-public class Game implements Animation {
+public class GameLevel implements Animation {
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
     public static final int BORDER_WIDTH = 20;
@@ -50,37 +53,58 @@ public class Game implements Animation {
     private DuplicateBall duplicateBall;
     private ScoreTrackingListener scoreTrackingListener;
     private AnimationRunner runner;
+    private List<Ball> ballList;
+    private List<Block> blocksList;
+    private String levelName;
     private boolean running;
+
+    public GameLevel(LevelInformation level, Counter score) {
+        this.gui = new GUI("Arkanoid", WIDTH, HEIGHT);
+        this.score = score;
+        this.environment = new GameEnvironment();
+        this.sprites = new SpriteCollection();
+        this.paddle = new Paddle(level.getPaddleRectangle(), level.getPaddleColor(), level.getPaddleSpeed());
+        this.sprites.addSprite(level.getBackground());
+        this.ballCounter = new Counter(level.numberOfBalls());
+        this.blockCounter = new Counter(level.blocks().size());
+        this.ballList = level.getBallsList();
+        this.blocksList = level.blocks();
+        this.levelName = level.levelName();
+        initialize();
+    }
 
     /**
      * Initialize a new game: create the Blocks and Ball (and Paddle)
      * and add them to the game.
      */
     public void initialize() {
-        this.gui = new GUI("Arkanoid", WIDTH, HEIGHT);
-        this.environment = new GameEnvironment();
+       /* this.environment = new GameEnvironment();*/
         this.sprites = new SpriteCollection();
-        this.paddle = new Paddle(this.gui, this.gui.getKeyboardSensor());
-        this.blockCounter = new Counter(0);
-        this.ballCounter = new Counter(0);
+        this.paddle.setGui(this.gui);
+        this.paddle.setKeyboard(this.gui.getKeyboardSensor());
         this.score = new Counter(0);
         this.blockRemover = new BlockRemover(this, this.blockCounter);
         this.ballRemover = new BallRemover(this, this.ballCounter);
-        this.duplicateBall = new DuplicateBall(this, this.ballCounter);
         this.scoreTrackingListener = new ScoreTrackingListener(this.score);
         this.paddle.addToGame(this);
         this.runner = new AnimationRunner(this.gui, framesPerSecond);
-        generateBorder();
+        //this.duplicateBall = new DuplicateBall(this, this.ballCounter);
         generateBlocks();
-        //generateBalls();
+        generateBalls();
         generateScoreBoard();
+        generateBorder();
     }
 
     /**
      * generate blocks.
      */
     private void generateBlocks() {
-        int count = 0;
+        for (Block block : this.blocksList) {
+            block.addHitListener(this.blockRemover);
+            block.addHitListener(this.scoreTrackingListener);
+            block.addToGame(this);
+        }
+        /*int count = 0;
         Random random = new Random();
         int rand1 = random.nextInt(70);
         int rand2 = random.nextInt(70);
@@ -114,7 +138,7 @@ public class Game implements Animation {
                 this.blockCounter.increase(1);
                 count++;
             }
-        }
+        }*/
     }
 
     /**
@@ -135,25 +159,29 @@ public class Game implements Animation {
         right.setColor(c);
         left.setColor(c);
         bottom.setColor(c);
+        bottom.addHitListener(this.ballRemover);
         top.addToGame(this);
         right.addToGame(this);
         left.addToGame(this);
         bottom.addToGame(this);
-        bottom.addHitListener(this.ballRemover);
     }
 
     /**
      * generate balls.
      */
     private void generateBalls() {
-        for (int i = 0; i < BALLS; i++) {
+        for (Ball b : this.ballList) {
+            b.addToGame(this);
+            b.setGameEnvironment(this.environment);
+        }
+        /*for (int i = 0; i < BALLS; i++) {
             Point p = Utils.generatePoint();
             Ball b = new Ball(p, RADIUS, Utils.generateColor());
             b.setVelocity(Utils.generateVelocity(b.getRadius()));
             b.addToGame(this);
             this.ballCounter.increase(1);
             b.setGameEnvironment(this.environment);
-        }
+        }*/
     }
 
     /**
@@ -161,7 +189,7 @@ public class Game implements Animation {
      */
     private void generateScoreBoard() {
         Rectangle rectangle = new Rectangle(new Point(0, 0), WIDTH, BLOCK_HEIGHT);
-        ScoreBoard board = new ScoreBoard(rectangle, this.score);
+        ScoreBoard board = new ScoreBoard(rectangle, this.score, this.levelName);
         board.addToGame(this);
     }
 

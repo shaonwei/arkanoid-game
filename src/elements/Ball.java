@@ -3,7 +3,7 @@ package elements;
 import biuoop.DrawSurface;
 import common.CollisionInfo;
 import common.Velocity;
-import game.Game;
+import game.GameLevel;
 import game.GameEnvironment;
 import geometric.Line;
 import geometric.Point;
@@ -221,18 +221,18 @@ public class Ball implements Sprite {
     }
 
     /**
-     * @param game add
+     * @param gameLevel add
      */
-    public void addToGame(Game game) {
-        game.addSprite(this);
+    public void addToGame(GameLevel gameLevel) {
+        gameLevel.addSprite(this);
     }
 
     /**
      * remove ball from game.
      *
-     * @param game game.Game
+     * @param gameLevel game.Game
      */
-    public void removeFromGame(Game game) {
-        game.removeSprite(this);
+    public void removeFromGame(GameLevel gameLevel) {
+        gameLevel.removeSprite(this);
     }
 }

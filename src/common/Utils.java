@@ -14,6 +14,11 @@ public class Utils {
     public static final int START_POINT = 320;
     public static final int RANGE = 100;
     public static final double EPSILON = Math.pow(10, -15);
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 600;
+    public static final int BORDER_WIDTH = 20;
+    public static final int BLOCK_WIDTH = 50;
+    public static final int BLOCK_HEIGHT = 20;
 
     /**
      * @return new random color
@@ -38,18 +43,17 @@ public class Utils {
     }
 
     /**
-     * @param radius int
      * @return new velocity
      */
-    public static Velocity generateVelocity(int radius) {
-        if (true) {
-            return new Velocity(-2, 3);
-        }
-        if (radius >= FIXED_RADIUS) {
+    public static Velocity generateVelocity() {
+        /*if (true) {*/
+        return new Velocity(-2, 3);
+
+        /*if (radius >= FIXED_RADIUS) {
             return new Velocity(0.5, 0.5);
         } else {
             return Velocity.fromAngleAndSpeed((double) (FIXED_RADIUS - radius) / 2,
                     (double) (FIXED_RADIUS - radius) / 2);
-        }
+        }*/
     }
 }

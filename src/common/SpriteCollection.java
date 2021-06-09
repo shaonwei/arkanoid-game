@@ -42,10 +42,10 @@ public class SpriteCollection {
      */
     public void notifyAllTimePassed() {
         List<Sprite> newSprites = new ArrayList<Sprite>(this.sprites);
-
         for (Sprite sprite : newSprites) {
             sprite.timePassed();
         }
+
     }
 
     /**
