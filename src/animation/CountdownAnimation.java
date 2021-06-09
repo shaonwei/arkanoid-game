@@ -43,7 +43,7 @@ public class CountdownAnimation implements Animation {
         }
         this.gameScreen.drawAllOn(d);
         d.setColor(Utils.generateColor());
-        d.drawText(250, 250, String.valueOf(this.initialCountFrom), 30);
+        d.drawText(400, 250, String.valueOf(this.initialCountFrom), 45);
         if (System.currentTimeMillis() - this.initialTime > this.numOfMillSec / this.initialCountFrom) {
             this.initialCountFrom--;
         }
