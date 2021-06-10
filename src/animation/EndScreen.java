@@ -22,7 +22,7 @@ public class EndScreen implements Animation {
     public EndScreen(KeyboardSensor k, boolean isWin, int score) {
         this.keyboard = k;
         this.isWin = isWin;
-        this.isWin = isWin;
+        this.score = score;
         this.stop = false;
     }
 
@@ -32,7 +32,6 @@ public class EndScreen implements Animation {
      */
     @Override
     public void doOneFrame(DrawSurface d) {
-        System.out.println("end");
         d.setColor(Utils.generateColor());
         if (isWin) {
             d.drawText(250, 250, "You Win! Your score is " + this.score, 30);
@@ -50,6 +49,6 @@ public class EndScreen implements Animation {
      */
     @Override
     public boolean shouldStop() {
-        return false;
+        return this.stop;
     }
 }

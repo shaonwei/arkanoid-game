@@ -32,7 +32,6 @@ public class PauseScreen implements Animation {
      */
     @Override
     public void doOneFrame(DrawSurface d) {
-        System.out.println("pause");
         d.setColor(Utils.generateColor());
         d.drawText(250, 250, "paused -- press space to continue", 30);
         if (this.keyboard.isPressed(KeyboardSensor.SPACE_KEY)) {

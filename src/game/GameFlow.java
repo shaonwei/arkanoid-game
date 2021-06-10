@@ -40,7 +40,6 @@ public class GameFlow {
     public void runLevels(List<LevelInformation> levels) {
         boolean isWin = true;
         for (LevelInformation levelInfo : levels) {
-            System.out.println(levelInfo.levelName());
             GameLevel level = new GameLevel(levelInfo, this.keyboardSensor, this.animationRunner, this.gui, this.score);
             level.initialize();
             while (!level.shouldStop()) {
@@ -52,5 +51,6 @@ public class GameFlow {
             }
         }
         this.animationRunner.run(new EndScreen(this.keyboardSensor, isWin, this.score.getValue()));
+        return;
     }
 }

@@ -43,5 +43,6 @@ public class Ass6Game {
         levels.add(thirdLevel);
         levels.add(forthLevel);
         gameFlow.runLevels(levels);
+        gui.close();
     }
 }

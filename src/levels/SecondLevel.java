@@ -37,7 +37,7 @@ public class SecondLevel extends Level {
      * create second level blocks.
      */
     private void createBlocks() {
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 13; i++) {
             Rectangle rectangle = new Rectangle(new Point(BORDER_WIDTH + (i * BLOCK_WIDTH),
                     BLOCK_HEIGHT + 300), BLOCK_WIDTH, BLOCK_HEIGHT);
             Block block = new Block(rectangle);

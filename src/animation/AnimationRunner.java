@@ -42,5 +42,6 @@ public class AnimationRunner {
                 sleeper.sleepFor(milliSecondLeftToSleep);
             }
         }
+        return;
     }
 }
