@@ -25,8 +25,8 @@ public class FirstLevel extends Level {
         super();
         this.setLevelName("First Level");
         this.paddle = new Paddle(new Rectangle(new Point(340, 580), 120, 30), Utils.generateColor(), 5);
-        Ball ball = new Ball(400, 570, 10, Utils.generateColor());
-        ball.setVelocity(new Velocity(0, 1));
+        Ball ball = new Ball(400, 570, Utils.RADIUS, Utils.generateColor());
+        ball.setVelocity(new Velocity(0, 2));
         this.getBallsList().add(ball);
         Block block = new Block(new Rectangle(new Point(380, 200), 40, 40));
         block.setColor(Color.MAGENTA);

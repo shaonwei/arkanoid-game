@@ -2,7 +2,7 @@ package animation;
 
 import biuoop.DrawSurface;
 import common.SpriteCollection;
-import common.Utils;
+
 import interfaces.Animation;
 
 import java.awt.Color;

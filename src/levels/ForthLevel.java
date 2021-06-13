@@ -19,7 +19,8 @@ import static common.Utils.WIDTH;
 /**
  * @author Sharon Weiss
  */
-public class ForthLevel extends Level{
+public class ForthLevel extends Level {
+    private static final int BALL_NUM = 10;
     private Sprite background;
     private Paddle paddle;
 
@@ -29,7 +30,7 @@ public class ForthLevel extends Level{
     public ForthLevel() {
         super();
         this.setLevelName("Forth Level");
-        this.paddle = new Paddle(new Rectangle(new Point(340, 580), 120, 30), Utils.generateColor(), 5);
+        this.paddle = new Paddle(new Rectangle(new Point(340, 580), 220, 30), Utils.generateColor(), 5);
         createBalls();
         createBlocks();
     }
@@ -38,9 +39,9 @@ public class ForthLevel extends Level{
      * create second level balls.
      */
     private void createBalls() {
-        for (int i = 0; i < 2; i++) {
-            Ball ball = new Ball(400 + i * 20, 570, 10, Utils.generateColor());
-            ball.setVelocity(new Velocity(-1, 1.5));
+        for (int i = 0; i < BALL_NUM; i++) {
+            Ball ball = new Ball(360 + i * 5, 572, Utils.RADIUS, Utils.generateColor());
+            ball.setVelocity(new Velocity(4, 1.5));
             this.getBallsList().add(ball);
         }
     }

@@ -9,7 +9,6 @@ import interfaces.Animation;
  * @author Sharon Weiss
  */
 public class EndScreen implements Animation {
-    private KeyboardSensor keyboard;
     private boolean stop;
     private boolean isWin;
     private int score;
@@ -17,10 +16,10 @@ public class EndScreen implements Animation {
     /**
      * constructor.
      *
-     * @param k KeyboardSensor
+     * @param isWin boolean
+     * @param score int
      */
-    public EndScreen(KeyboardSensor k, boolean isWin, int score) {
-        this.keyboard = k;
+    public EndScreen(boolean isWin, int score) {
         this.isWin = isWin;
         this.score = score;
         this.stop = false;
@@ -37,9 +36,6 @@ public class EndScreen implements Animation {
             d.drawText(250, 250, "You Win! Your score is " + this.score, 30);
         } else {
             d.drawText(250, 250, "Game Over. Your score is " + this.score, 30);
-        }
-        if (this.keyboard.isPressed(KeyboardSensor.SPACE_KEY)) {
-            this.stop = true;
         }
     }
 

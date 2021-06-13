@@ -204,10 +204,10 @@ public class Paddle implements Sprite, Collidable {
     }
 
     /**
-     * @param rectangle Rectangle- setter
+     * @param rect Rectangle- setter
      */
-    public void setRectangle(Rectangle rectangle) {
-        this.rectangle = rectangle;
+    public void setRectangle(Rectangle rect) {
+        this.rectangle = rect;
     }
 
     /**
@@ -222,10 +222,10 @@ public class Paddle implements Sprite, Collidable {
     /**
      * setter.
      *
-     * @param speed int
+     * @param s int
      */
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setSpeed(int s) {
+        this.speed = s;
     }
 
     /**
@@ -240,10 +240,10 @@ public class Paddle implements Sprite, Collidable {
     /**
      * setter.
      *
-     * @param keyboard KeyboardSensor
+     * @param sensor KeyboardSensor
      */
-    public void setKeyboard(KeyboardSensor keyboard) {
-        this.keyboard = keyboard;
+    public void setKeyboard(KeyboardSensor sensor) {
+        this.keyboard = sensor;
     }
 
     /**
@@ -258,10 +258,10 @@ public class Paddle implements Sprite, Collidable {
     /**
      * setter.
      *
-     * @param gui GUI
+     * @param g GUI
      */
-    public void setGui(GUI gui) {
-        this.gui = gui;
+    public void setGui(GUI g) {
+        this.gui = g;
     }
 
 }

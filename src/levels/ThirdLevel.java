@@ -10,7 +10,6 @@ import geometric.Rectangle;
 import interfaces.Sprite;
 
 import java.awt.Color;
-import java.util.Random;
 
 import static common.Utils.BLOCK_HEIGHT;
 import static common.Utils.BLOCK_WIDTH;
@@ -21,8 +20,10 @@ import static common.Utils.WIDTH;
  * @author Sharon Weiss
  */
 public class ThirdLevel extends Level {
+    private static final int BALL_NUM = 5;
     private Sprite background;
     private Paddle paddle;
+
 
     /**
      * third level constructor.
@@ -30,7 +31,7 @@ public class ThirdLevel extends Level {
     public ThirdLevel() {
         super();
         this.setLevelName("Third Level");
-        this.paddle = new Paddle(new Rectangle(new Point(340, 580), 120, 30), Utils.generateColor(), 5);
+        this.paddle = new Paddle(new Rectangle(new Point(200, 580), 120, 30), Utils.generateColor(), 5);
         createBalls();
         createBlocks();
     }
@@ -39,9 +40,9 @@ public class ThirdLevel extends Level {
      * create second level balls.
      */
     private void createBalls() {
-        for (int i = 0; i < 2; i++) {
-            Ball ball = new Ball(400 + i * 15, 570, 10, Utils.generateColor());
-            ball.setVelocity(new Velocity(-1, 2));
+        for (int i = 0; i < BALL_NUM; i++) {
+            Ball ball = new Ball(300 + 8 * i, 580, Utils.RADIUS, Utils.generateColor());
+            ball.setVelocity(new Velocity(-3, -2));
             this.getBallsList().add(ball);
         }
     }

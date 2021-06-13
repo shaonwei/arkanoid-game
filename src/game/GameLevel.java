@@ -2,6 +2,7 @@ package game;
 
 import animation.AnimationRunner;
 import animation.CountdownAnimation;
+import animation.KeyPressStoppableAnimation;
 import animation.PauseScreen;
 import biuoop.DrawSurface;
 import biuoop.GUI;
@@ -19,7 +20,7 @@ import interfaces.Animation;
 import interfaces.Collidable;
 import interfaces.LevelInformation;
 import interfaces.Sprite;
-import jdk.jshell.execution.Util;
+
 import listeners.BallRemover;
 import listeners.BlockRemover;
 import listeners.DuplicateBall;
@@ -27,7 +28,7 @@ import listeners.ScoreTrackingListener;
 
 import java.awt.Color;
 import java.util.List;
-import java.util.Random;
+
 
 /**
  * @author Sharon Weiss
@@ -57,7 +58,17 @@ public class GameLevel implements Animation {
     private String levelName;
     private boolean running;
 
-    public GameLevel(LevelInformation level, KeyboardSensor keyboardSensor, AnimationRunner animationRunner, GUI gui, Counter score) {
+    /**
+     * constructor.
+     *
+     * @param level           LevelInformation
+     * @param keyboardSensor  KeyboardSensor
+     * @param animationRunner AnimationRunner
+     * @param gui             GUI
+     * @param score           Counter
+     */
+    public GameLevel(LevelInformation level, KeyboardSensor keyboardSensor, AnimationRunner animationRunner, GUI gui,
+                     Counter score) {
         this.gui = gui;
         this.keyboardSensor = keyboardSensor;
         this.score = score;
@@ -324,10 +335,9 @@ public class GameLevel implements Animation {
     @Override
     public void doOneFrame(DrawSurface d) {
         this.sprites.drawAllOn(d);
-        //this.gui.show(d);
         this.sprites.notifyAllTimePassed();
-        if (this.gui.getKeyboardSensor().isPressed("p")) {
-            this.runner.run(new PauseScreen(this.gui.getKeyboardSensor()));
+        if (this.gui.getKeyboardSensor().isPressed("p") || this.gui.getKeyboardSensor().isPressed("P")) {
+            this.runner.run(new KeyPressStoppableAnimation(this.gui.getKeyboardSensor(), KeyboardSensor.SPACE_KEY, new PauseScreen()));
         }
     }
 
@@ -352,10 +362,10 @@ public class GameLevel implements Animation {
     /**
      * setter.
      *
-     * @param ballCounter Counter
+     * @param ballCount Counter
      */
-    public void setBallCounter(Counter ballCounter) {
-        this.ballCounter = ballCounter;
+    public void setBallCounter(Counter ballCount) {
+        this.ballCounter = ballCount;
     }
 
 }

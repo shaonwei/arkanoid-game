@@ -2,6 +2,7 @@ package game;
 
 import animation.AnimationRunner;
 import animation.EndScreen;
+import animation.KeyPressStoppableAnimation;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import common.Counter;
@@ -50,7 +51,8 @@ public class GameFlow {
                 break;
             }
         }
-        this.animationRunner.run(new EndScreen(this.keyboardSensor, isWin, this.score.getValue()));
+        //todo: fix loser screen
+        this.animationRunner.run(new KeyPressStoppableAnimation(this.keyboardSensor,KeyboardSensor.SPACE_KEY,new EndScreen( isWin, this.score.getValue())));
         return;
     }
 }

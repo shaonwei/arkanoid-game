@@ -5,13 +5,11 @@ import biuoop.KeyboardSensor;
 import common.Utils;
 import interfaces.Animation;
 
-import java.awt.Color;
 
 /**
  * @author Sharon Weiss
  */
 public class PauseScreen implements Animation {
-    private KeyboardSensor keyboard;
     private boolean stop;
 
     /**
@@ -19,8 +17,7 @@ public class PauseScreen implements Animation {
      *
      * @param k KeyboardSensor
      */
-    public PauseScreen(KeyboardSensor k) {
-        this.keyboard = k;
+    public PauseScreen() {
         this.stop = false;
     }
 
@@ -34,9 +31,6 @@ public class PauseScreen implements Animation {
     public void doOneFrame(DrawSurface d) {
         d.setColor(Utils.generateColor());
         d.drawText(250, 250, "paused -- press space to continue", 30);
-        if (this.keyboard.isPressed(KeyboardSensor.SPACE_KEY)) {
-            this.stop = true;
-        }
     }
 
     /**

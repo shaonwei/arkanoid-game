@@ -22,6 +22,9 @@ public abstract class Level implements LevelInformation {
     private Sprite background;
     private Paddle paddle;
 
+    /**
+     * constructor.
+     */
     public Level() {
         this.ballList = new ArrayList<>();
         this.blocks = new ArrayList<>();
@@ -130,8 +133,14 @@ public abstract class Level implements LevelInformation {
     public int getPaddleSpeed() {
         return 0;
     }
-    public void setLevelName(String levelName) {
-        this.levelName = levelName;
+
+    /**
+     * setter.
+     *
+     * @param name String
+     */
+    public void setLevelName(String name) {
+        this.levelName = name;
     }
 
 }
