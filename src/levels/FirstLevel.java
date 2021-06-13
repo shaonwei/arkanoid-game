@@ -24,12 +24,12 @@ public class FirstLevel extends Level {
     public FirstLevel() {
         super();
         this.setLevelName("First Level");
-        this.paddle = new Paddle(new Rectangle(new Point(340, 580), 120, 30), Utils.generateColor(), 5);
+        this.paddle = new Paddle(new Rectangle(new Point(Utils.WIDTH / 2 - 60, 580), 120, 30), Utils.generateColor(), 5);
         Ball ball = new Ball(400, 570, Utils.RADIUS, Utils.generateColor());
-        ball.setVelocity(new Velocity(0, 2));
+        ball.setVelocity(new Velocity(0, 3));
         this.getBallsList().add(ball);
-        Block block = new Block(new Rectangle(new Point(380, 200), 40, 40));
-        block.setColor(Color.MAGENTA);
+        Block block = new Block(new Rectangle(new Point(Utils.WIDTH / 2 - 40, 200), 80, 80));
+        block.setColor(Color.red);
         this.blocks().add(block);
     }
 

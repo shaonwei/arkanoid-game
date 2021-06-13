@@ -15,7 +15,6 @@ public class PauseScreen implements Animation {
     /**
      * constructor.
      *
-     * @param k KeyboardSensor
      */
     public PauseScreen() {
         this.stop = false;
@@ -30,7 +29,7 @@ public class PauseScreen implements Animation {
     @Override
     public void doOneFrame(DrawSurface d) {
         d.setColor(Utils.generateColor());
-        d.drawText(250, 250, "paused -- press space to continue", 30);
+        d.drawText(250, 250, "paused press space to continue", 30);
     }
 
     /**

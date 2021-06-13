@@ -53,6 +53,5 @@ public class GameFlow {
         }
         //todo: fix loser screen
         this.animationRunner.run(new KeyPressStoppableAnimation(this.keyboardSensor,KeyboardSensor.SPACE_KEY,new EndScreen( isWin, this.score.getValue())));
-        return;
     }
 }

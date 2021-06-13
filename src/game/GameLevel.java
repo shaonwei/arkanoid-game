@@ -216,8 +216,6 @@ public class GameLevel implements Animation {
         if (this.blockCounter.getValue() == 0) {
             this.score.increase(100);
         }
-        //this.gui.close();
-        return;
     }
 
     /**
