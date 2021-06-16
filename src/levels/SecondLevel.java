@@ -19,7 +19,7 @@ import static game.GameLevel.BORDER_WIDTH;
  * @author Sharon Weiss
  */
 public class SecondLevel extends Level {
-    private static final int BALL_NUM = 10;
+    private static final int BALL_NUM = 12;
     private static final int BLOCK_NUM = 13;
     private Sprite background;
     private Paddle paddle;
@@ -52,9 +52,9 @@ public class SecondLevel extends Level {
      * create second level balls.
      */
     private void createBalls() {
-        for (int i = 0; i < BALL_NUM ; i++) {
+        for (int i = 0; i < BALL_NUM; i++) {
             Ball ball = new Ball(400, 570, Utils.RADIUS, Utils.generateColor());
-            ball.setVelocity(Velocity.fromAngleAndSpeed(10 * i - 45, 4));
+            ball.setVelocity(Velocity.fromAngleAndSpeed(10 * i - 50, 4));
             this.getBallsList().add(ball);
         }
     }

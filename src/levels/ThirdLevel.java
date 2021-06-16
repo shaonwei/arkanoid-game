@@ -20,7 +20,7 @@ import static common.Utils.WIDTH;
  * @author Sharon Weiss
  */
 public class ThirdLevel extends Level {
-    private static final int BALL_NUM = 5;
+    private static final int BALL_NUM = 2;
     private Sprite background;
     private Paddle paddle;
 
@@ -31,7 +31,7 @@ public class ThirdLevel extends Level {
     public ThirdLevel() {
         super();
         this.setLevelName("Third Level");
-        this.paddle = new Paddle(new Rectangle(new Point(200, 580), 120, 30), Utils.generateColor(), 5);
+        this.paddle = new Paddle(new Rectangle(new Point(WIDTH / 2 - 60, 580), 120, 30), Utils.generateColor(), 5);
         createBalls();
         createBlocks();
     }
@@ -41,8 +41,8 @@ public class ThirdLevel extends Level {
      */
     private void createBalls() {
         for (int i = 0; i < BALL_NUM; i++) {
-            Ball ball = new Ball(300 + 8 * i, 580, Utils.RADIUS, Utils.generateColor());
-            ball.setVelocity(new Velocity(-3, -2));
+            Ball ball = new Ball(400, 570, Utils.RADIUS, Utils.generateColor());
+            ball.setVelocity(Velocity.fromAngleAndSpeed(10 * i - 50, 4));
             this.getBallsList().add(ball);
         }
     }

@@ -13,6 +13,8 @@ import interfaces.Sprite;
 
 import java.awt.Color;
 
+import static common.Utils.WIDTH;
+
 /**
  * @author Sharon Weiss
  */
@@ -91,7 +93,7 @@ public class Paddle implements Sprite, Collidable {
      * move paddle to right.
      */
     public void moveRight() {
-        if (this.rectangle.getUpperLeft().getX() + this.rectangle.getWidth() < GameLevel.WIDTH) {
+        if (this.rectangle.getUpperLeft().getX() + this.rectangle.getWidth() < WIDTH) {
             this.rectangle.setUpperLeft(new Point(this.rectangle.getUpperLeft().getX() + this.speed,
                     this.rectangle.getUpperLeft().getY()));
             setRegions();

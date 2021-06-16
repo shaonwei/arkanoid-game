@@ -29,13 +29,16 @@ import listeners.ScoreTrackingListener;
 import java.awt.Color;
 import java.util.List;
 
+import static common.Utils.HEIGHT;
+import static common.Utils.WIDTH;
+
 
 /**
  * @author Sharon Weiss
  */
 public class GameLevel implements Animation {
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
+//    public static final int WIDTH = 800;
+//    public static final int HEIGHT = 600;
     public static final int BORDER_WIDTH = 20;
     public static final int BLOCK_WIDTH = 60;
     public static final int BLOCK_HEIGHT = 30;
@@ -335,7 +338,8 @@ public class GameLevel implements Animation {
         this.sprites.drawAllOn(d);
         this.sprites.notifyAllTimePassed();
         if (this.gui.getKeyboardSensor().isPressed("p") || this.gui.getKeyboardSensor().isPressed("P")) {
-            this.runner.run(new KeyPressStoppableAnimation(this.gui.getKeyboardSensor(), KeyboardSensor.SPACE_KEY, new PauseScreen()));
+            this.runner.run(new KeyPressStoppableAnimation(this.gui.getKeyboardSensor(), KeyboardSensor.SPACE_KEY,
+                    new PauseScreen()));
         }
     }
 

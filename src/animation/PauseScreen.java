@@ -1,10 +1,10 @@
 package animation;
 
 import biuoop.DrawSurface;
-import biuoop.KeyboardSensor;
 import common.Utils;
 import interfaces.Animation;
 
+import java.awt.Color;
 
 /**
  * @author Sharon Weiss
@@ -14,7 +14,6 @@ public class PauseScreen implements Animation {
 
     /**
      * constructor.
-     *
      */
     public PauseScreen() {
         this.stop = false;
@@ -30,6 +29,9 @@ public class PauseScreen implements Animation {
     public void doOneFrame(DrawSurface d) {
         d.setColor(Utils.generateColor());
         d.drawText(250, 250, "paused press space to continue", 30);
+        d.setColor(Color.RED);
+        d.fillRectangle(150, 150, 100, 200);
+        d.fillRectangle(300, 150, 100, 200);
     }
 
     /**

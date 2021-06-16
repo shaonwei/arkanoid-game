@@ -16,7 +16,7 @@ public enum LevelsEnum {
      *
      * @param value int
      */
-    private LevelsEnum(int value) {
+    LevelsEnum(int value) {
         this.value = value;
     }
 }
