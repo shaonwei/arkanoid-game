@@ -21,6 +21,17 @@ public class Utils {
     public static final int BLOCK_HEIGHT = 20;
     public static final int FRAMES_PER_SECOND = 60;
     public static final int RADIUS = 7;
+    public static final Color LIGHT_PINK = new Color(255, 219, 219);
+    public static final Color LIGHT_ORANGE = new Color(255, 238, 226);
+    public static final Color BANANA = new Color(252, 250, 222);
+    public static final Color LIGHT_GREEN = new Color(230, 255, 242);
+    public static final Color LIGHT_BLUE = new Color(223, 242, 253);
+    public static final Color LIGHT_PURPLE = new Color(227, 227, 255);
+    public static final Color PINK = new Color(255, 102, 255);
+    public static final Color LIGHT_GRAY = new Color(242, 242, 242);
+    public static final Color NIGHT_SKY = new Color(0, 51, 153);
+    public static final Color MOON = new Color(242, 242, 242);
+    public static final Color STAR = new Color(250, 250, 250);
 
 
     /**
@@ -38,10 +49,9 @@ public class Utils {
      * @return random point
      */
     public static Point generatePoint() {
-        //todo: test
         Random rand = new Random();
-        int x = 340/*rand.nextInt(START_POINT) + RANGE*/;
-        int y = 550/*rand.nextInt(START_POINT) + RANGE*/;
+        int x = rand.nextInt(START_POINT) + RANGE;
+        int y = rand.nextInt(START_POINT) + RANGE;
         return new Point(x, y);
     }
 
@@ -49,14 +59,6 @@ public class Utils {
      * @return new velocity
      */
     public static Velocity generateVelocity() {
-        /*if (true) {*/
         return new Velocity(-2, 3);
-
-        /*if (radius >= FIXED_RADIUS) {
-            return new Velocity(0.5, 0.5);
-        } else {
-            return Velocity.fromAngleAndSpeed((double) (FIXED_RADIUS - radius) / 2,
-                    (double) (FIXED_RADIUS - radius) / 2);
-        }*/
     }
 }

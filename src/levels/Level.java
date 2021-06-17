@@ -6,7 +6,6 @@ import elements.Block;
 import elements.Paddle;
 import geometric.Rectangle;
 import interfaces.LevelInformation;
-import interfaces.Sprite;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ public abstract class Level implements LevelInformation {
     private List<Ball> ballList;
     private List<Block> blocks;
     private String levelName;
-    private Sprite background;
     private Paddle paddle;
 
     /**
@@ -74,14 +72,6 @@ public abstract class Level implements LevelInformation {
     @Override
     public String levelName() {
         return this.levelName;
-    }
-
-    /**
-     * @return sprite with the background of the level
-     */
-    @Override
-    public Sprite getBackground() {
-        return this.background;
     }
 
     /**
@@ -142,5 +132,4 @@ public abstract class Level implements LevelInformation {
     public void setLevelName(String name) {
         this.levelName = name;
     }
-
 }

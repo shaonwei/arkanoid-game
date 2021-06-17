@@ -30,7 +30,7 @@ public class AnimationRunner {
      */
     public void run(Animation animation) {
         Sleeper sleeper = new Sleeper();
-        int millisecondsPerFrame = 1000 / framesPerSecond;
+        int millisecondsPerFrame = 1000 / this.framesPerSecond;
         while (!animation.shouldStop()) {
             long startTime = System.currentTimeMillis();
             DrawSurface d = this.gui.getDrawSurface();
@@ -42,6 +42,5 @@ public class AnimationRunner {
                 sleeper.sleepFor(milliSecondLeftToSleep);
             }
         }
-        return;
     }
 }

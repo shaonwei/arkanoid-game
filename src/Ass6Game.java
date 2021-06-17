@@ -27,10 +27,7 @@ public class Ass6Game {
      */
     public static void main(String[] args) {
         List<LevelInformation> levels = new ArrayList<>();
-        FirstLevel firstLevel = new FirstLevel();
-        SecondLevel secondLevel = new SecondLevel();
-        ThirdLevel thirdLevel = new ThirdLevel();
-        ForthLevel forthLevel = new ForthLevel();
+
         int temp = 0;
         LevelsEnum levelsEnum;
         for (String s : args) {
@@ -39,16 +36,16 @@ public class Ass6Game {
                 levelsEnum = LevelsEnum.values()[temp];
                 switch (levelsEnum) {
                     case FIRST_LEVEL:
-                        levels.add(firstLevel);
+                        levels.add(new FirstLevel());
                         break;
                     case SECOND_LEVEL:
-                        levels.add(secondLevel);
+                        levels.add(new SecondLevel());
                         break;
                     case THIRD_LEVEL:
-                        levels.add(thirdLevel);
+                        levels.add(new ThirdLevel());
                         break;
                     case FORTH_LEVEL:
-                        levels.add(forthLevel);
+                        levels.add(new ForthLevel());
                         break;
                     default:
                         break;
@@ -56,12 +53,14 @@ public class Ass6Game {
             } catch (Exception ignored) {
             }
         }
+
         if (levels.size() == 0) {
-            levels.add(firstLevel);
-            levels.add(secondLevel);
-            levels.add(thirdLevel);
-            levels.add(forthLevel);
+            levels.add(new FirstLevel());
+            levels.add(new SecondLevel());
+            levels.add(new ThirdLevel());
+            levels.add(new ForthLevel());
         }
+
         System.out.println(levels.toString());
         GUI gui = new GUI("Arkanoid", WIDTH, HEIGHT);
         AnimationRunner animationRunner = new AnimationRunner(gui, FRAMES_PER_SECOND);

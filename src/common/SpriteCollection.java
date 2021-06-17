@@ -53,8 +53,16 @@ public class SpriteCollection {
      *          call drawOn(d) on all sprites.
      */
     public void drawAllOn(DrawSurface d) {
-        for (Sprite sprite : this.sprites) {
-            sprite.drawOn(d);
+        try {
+            for (Sprite sprite : this.sprites) {
+                if (sprite != null) {
+                    sprite.drawOn(d);
+                } else {
+                    this.sprites.size();
+                }
+            }
+        } catch (Exception e) {
+            this.sprites.size();
         }
     }
 

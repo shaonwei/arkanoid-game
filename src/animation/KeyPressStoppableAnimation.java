@@ -43,16 +43,6 @@ public class KeyPressStoppableAnimation implements Animation {
         if (this.isAlreadyPressed) {
             this.isAlreadyPressed = false;
         }
-       /* this.animation.doOneFrame(d);
-        if (this.sensor.isPressed(this.key)) {
-            if (this.isAlreadyPressed) {
-                this.stop = false;
-            } else {
-                this.stop = true;
-            }
-        } else {
-            this.isAlreadyPressed = false;
-        }*/
     }
 
     /**

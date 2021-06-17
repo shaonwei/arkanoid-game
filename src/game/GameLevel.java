@@ -37,8 +37,6 @@ import static common.Utils.WIDTH;
  * @author Sharon Weiss
  */
 public class GameLevel implements Animation {
-//    public static final int WIDTH = 800;
-//    public static final int HEIGHT = 600;
     public static final int BORDER_WIDTH = 20;
     public static final int BLOCK_WIDTH = 60;
     public static final int BLOCK_HEIGHT = 30;
@@ -84,8 +82,7 @@ public class GameLevel implements Animation {
         this.ballList = level.getBallsList();
         this.blocksList = level.blocks();
         this.levelName = level.levelName();
-        //this.sprites.addSprite(level.getBackground());
-        //initialize();
+        this.sprites.addSprite(level.getBackground());
     }
 
     /**
@@ -93,11 +90,6 @@ public class GameLevel implements Animation {
      * and add them to the game.
      */
     public void initialize() {
-        /* this.environment = new GameEnvironment();*/
-        //this.score = new Counter(0);
-        //this.runner = new AnimationRunner(this.gui, framesPerSecond);
-        //this.duplicateBall = new DuplicateBall(this, this.ballCounter);
-        this.sprites = new SpriteCollection();
         this.paddle.setGui(this.gui);
         this.paddle.setKeyboard(this.keyboardSensor);
         this.blockRemover = new BlockRemover(this, this.blockCounter);
@@ -118,41 +110,6 @@ public class GameLevel implements Animation {
             block.addHitListener(this.scoreTrackingListener);
             block.addToGame(this);
         }
-        /*int count = 0;
-        Random random = new Random();
-        int rand1 = random.nextInt(70);
-        int rand2 = random.nextInt(70);
-        for (int i = 0; i < 6; i++) {
-            Color color = Utils.generateColor();
-            for (int k = 1; k < 13 - i; k++) {
-                Rectangle rectangle = new Rectangle(new Point(WIDTH - ((k) * BLOCK_WIDTH) - BORDER_WIDTH,
-                        i * BLOCK_HEIGHT + 100), BLOCK_WIDTH, BLOCK_HEIGHT);
-                Block block = new Block(rectangle);
-                if (count == rand1) {
-                    //killing block
-                    block.addHitListener(this.ballRemover);
-                    block.addHitListener(this.blockRemover);
-                    block.addHitListener(this.scoreTrackingListener);
-                    block.setColor(Color.black);
-                    rand1 = 300;
-                } else if (count == rand2) {
-                    //duplicate ball
-                    block.addHitListener(this.duplicateBall);
-                    block.addHitListener(this.blockRemover);
-                    block.addHitListener(this.scoreTrackingListener);
-                    block.setColor(Color.red);
-                    rand2 = 300;
-                } else {
-                    block.addHitListener(this.blockRemover);
-                    block.addHitListener(this.scoreTrackingListener);
-                    block.setColor(color);
-
-                }
-                block.addToGame(this);
-                this.blockCounter.increase(1);
-                count++;
-            }
-        }*/
     }
 
     /**
@@ -188,14 +145,6 @@ public class GameLevel implements Animation {
             b.addToGame(this);
             b.setGameEnvironment(this.environment);
         }
-        /*for (int i = 0; i < BALLS; i++) {
-            Point p = Utils.generatePoint();
-            Ball b = new Ball(p, RADIUS, Utils.generateColor());
-            b.setVelocity(Utils.generateVelocity(b.getRadius()));
-            b.addToGame(this);
-            this.ballCounter.increase(1);
-            b.setGameEnvironment(this.environment);
-        }*/
     }
 
     /**

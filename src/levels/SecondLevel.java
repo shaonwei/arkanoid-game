@@ -1,15 +1,20 @@
 package levels;
 
+import common.Background;
 import common.Utils;
 import common.Velocity;
 import elements.Ball;
 import elements.Block;
+
 import elements.Paddle;
+import elements.Circle;
+
 import geometric.Point;
 import geometric.Rectangle;
 import interfaces.Sprite;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import static game.GameLevel.BLOCK_HEIGHT;
 import static game.GameLevel.BLOCK_WIDTH;
@@ -54,9 +59,31 @@ public class SecondLevel extends Level {
     private void createBalls() {
         for (int i = 0; i < BALL_NUM; i++) {
             Ball ball = new Ball(400, 570, Utils.RADIUS, Utils.generateColor());
-            ball.setVelocity(Velocity.fromAngleAndSpeed(10 * i - 50, 4));
+            ball.setVelocity(Velocity.fromAngleAndSpeed(10 * i - 50, 5));
             this.getBallsList().add(ball);
         }
+    }
+
+    /**
+     * @return sprite with the background of the level
+     */
+    @Override
+    public Sprite getBackground() {
+        ArrayList<Sprite> sprites = new ArrayList<>();
+        Circle c1 = new Circle(new Point(400, 600), 500, Utils.LIGHT_PINK, true);
+        Circle c2 = new Circle(new Point(400, 600), 450, Utils.LIGHT_ORANGE, true);
+        Circle c3 = new Circle(new Point(400, 600), 400, Utils.BANANA, true);
+        Circle c4 = new Circle(new Point(400, 600), 350, Utils.LIGHT_GREEN, true);
+        Circle c5 = new Circle(new Point(400, 600), 300, Utils.LIGHT_BLUE, true);
+        Circle c6 = new Circle(new Point(400, 600), 250, Utils.LIGHT_PURPLE, true);
+
+        sprites.add(c1);
+        sprites.add(c2);
+        sprites.add(c3);
+        sprites.add(c4);
+        sprites.add(c5);
+        sprites.add(c6);
+        return new Background(Color.white, sprites);
     }
 
     /**

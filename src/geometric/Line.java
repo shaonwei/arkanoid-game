@@ -105,7 +105,6 @@ public class Line {
      * @return the intersection point if the lines intersect, and null otherwise
      */
     public Point intersectionWith(Line other) {
-        //todo: check by test
         if (isIntersecting(other)) {
             double intersectionX;
             double intersectionY;

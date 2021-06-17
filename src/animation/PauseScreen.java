@@ -28,10 +28,10 @@ public class PauseScreen implements Animation {
     @Override
     public void doOneFrame(DrawSurface d) {
         d.setColor(Utils.generateColor());
-        d.drawText(250, 250, "paused press space to continue", 30);
+        d.drawText(150, 250, "paused press space to continue", 30);
         d.setColor(Color.RED);
-        d.fillRectangle(150, 150, 100, 200);
-        d.fillRectangle(300, 150, 100, 200);
+        d.fillRectangle(150, 350, 50, 110);
+        d.fillRectangle(230, 350, 50, 110);
     }
 
     /**

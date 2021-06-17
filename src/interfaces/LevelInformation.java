@@ -77,4 +77,5 @@ public interface LevelInformation {
      * @return balls' list
      */
     List<Ball> getBallsList();
+
 }
