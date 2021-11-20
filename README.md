@@ -1,4 +1,4 @@
-# arkanoid-game
+# Arkanoid-Game
 
 ## General
 
